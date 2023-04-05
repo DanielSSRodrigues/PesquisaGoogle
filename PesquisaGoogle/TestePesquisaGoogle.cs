@@ -22,22 +22,19 @@ namespace PesquisaGoogle
         [Fact]
         public void PesquisarTenisNoGoogle()
         {
-            // Acessa o site do Google
             navegador.Navigate().GoToUrl(_url);
             Thread.Sleep(2000);
 
-            // Encontra o campo de pesquisa e insere o termo "tênis"
             var campoPesquisa = navegador.FindElement(By.Name("q"));
-            campoPesquisa.SendKeys("tênis");
+            campoPesquisa.SendKeys("tênis Nike");
             Thread.Sleep(2000);
 
-            // Encontra o botão de pesquisa e clica nele
             var botaoPesquisa = navegador.FindElement(By.Name("btnK"));
             botaoPesquisa.Click();
             Thread.Sleep(2000);
 
-            // Verifica se a página de resultados de pesquisa foi carregada
-            var tituloEsperado = "tênis - Pesquisa Google";
+            // Assertiva utilizando Fluent Assertions
+            var tituloEsperado = "tênis Nike - Pesquisa Google";
             navegador.Title.Should().Be(tituloEsperado, $"O título atual é {navegador.Title}");
             Thread.Sleep(2000);
 
